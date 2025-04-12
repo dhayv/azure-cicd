@@ -10,8 +10,8 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  azureSubscription: Azure subscription 1
-  appName: FastApi-helloworld
+  azureSubscription: 'Azure subscription 1(af0e2479-f4aa-4f0e-938a-594f94cc55ea)'
+  appName: 'FastApi-helloworld'
   dockerRegistryServiceConnection: '5addf163-5659-45b4-af47-42cd9654ea09'
   imageRepository: 'dhayvazurecicd'
   containerRegistry: 'myfastapidemo.azurecr.io'
