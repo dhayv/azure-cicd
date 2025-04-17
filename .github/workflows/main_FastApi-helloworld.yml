@@ -24,15 +24,15 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Login to ACR
-      run: az acr login --name myfastapidemo
-
-    - name: Build and push container image to registry
-      uses: docker/build-push-action@v3
+    - name: 'Build and push image'
+      uses: azure/docker-login@v1
       with:
-        push: true
-        tags: myfastapidemo.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_997be58d096e41b3968a6a010ec570d0 }}/fastapidemo:${{ github.sha }}
-        file: ./Dockerfile
+        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    - run: |
+        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/fastapidemo:${{ github.sha }}
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/fastapidemo:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
