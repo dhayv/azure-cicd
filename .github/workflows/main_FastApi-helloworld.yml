@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://myfastapidemo.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_ae5ac57511484aaa8d81fccf50b1f5e5 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_c14978fdcaba4a899662b96e97f9673d }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_997be58d096e41b3968a6a010ec570d0 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_2d99ee2d73884430b36d490fe37319e9 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: myfastapidemo.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ae5ac57511484aaa8d81fccf50b1f5e5 }}/fastapidemo:${{ github.sha }}
+        tags: myfastapidemo.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_997be58d096e41b3968a6a010ec570d0 }}/fastapidemo:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'FastApi-helloworld'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_9ef38dafa1a94e48bef1d08128c1c275 }}
-        images: 'myfastapidemo.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ae5ac57511484aaa8d81fccf50b1f5e5 }}/fastapidemo:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_2d8c535fa777465fb3dba9d793bf2976 }}
+        images: 'myfastapidemo.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_997be58d096e41b3968a6a010ec570d0 }}/fastapidemo:${{ github.sha }}'
